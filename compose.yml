@@ -1,0 +1,12 @@
+name: "project"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./tomcat.dockerfile
+      args:
+        - war_file=labboot-ajax/target/labboot-ajax.war
+    ports:
+      - "9080:8080"
+    container_name: java

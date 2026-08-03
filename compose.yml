@@ -10,3 +10,12 @@ services:
     ports:
       - "9080:8080"
     container_name: java
+  frontend:
+    build:
+      context: .
+      dockerfile: ./nginx.dockerfile
+      args:
+        - "build_dir=labvue-front/dist"
+    ports:
+      - "9173:80"
+    container_name: vue

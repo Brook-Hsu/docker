@@ -7,15 +7,21 @@ services:
       dockerfile: ./tomcat.dockerfile
       args:
         - war_file=labboot-ajax/target/labboot-ajax.war
-    ports:
-      - "9080:8080"
-    container_name: java
+    # ports:
+    #   - "9080:8080"
+    # container_name: java
   frontend:
     build:
       context: .
       dockerfile: ./nginx.dockerfile
       args:
         - "build_dir=labvue-front/dist"
+    # ports:
+    #   - "9173:80"
+    # container_name: vue
+  reverse-proxy:
+    build:
+      context: ./proxy/
+      dockerfile: ./caddy.dockerfile
     ports:
-      - "9173:80"
-    container_name: vue
+      - "9000:80"
